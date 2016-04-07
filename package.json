@@ -1,5 +1,5 @@
 {
-  "name": "pluralsight_rest_api",
+  "name": "demo_rest_api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "~4.13.4"
+    "express": "~4.13.4",
+    "gulp": "~3.9.1",
+    "gulp-nodemon": "~2.0.6"
   }
 }
