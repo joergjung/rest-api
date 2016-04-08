@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // connect to database
 var db = mongoose.connect('mongodb://localhost:27017/bookAPI');
@@ -8,7 +9,18 @@ var port = process.env.PORT || 3000;
 var adminRouter = require('./routes/adminRoutes')();
 var bookRouter = express.Router();
 
+// configure bodyParser
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 bookRouter.route('/Books')
+    .post(function(req, res) {
+        var book = new Book(req.body);
+        // save to database
+        book.save();
+        res.status(201).send(book);
+    })
+
     .get(function(req, res) {     
         // req.query returns a JSON object which contains the query parameters
         // for example with http://localhost:8000/api/Books?author=Victor Hugo
