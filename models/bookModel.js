@@ -16,6 +16,6 @@ var bookModel = new Schema({
     }
 });
 
-// 'Book' is the name of the model. 
-// Mongoose automatically looks for the plural version of the model name and connects it with the collection (with that name - in this case 'books') in the Database 
+// 'Book' is the name of the model.
+// Mongoose automatically looks for the plural version of the model name and connects it with the collection (with that name - in this case 'books') in the Database
 module.exports = mongoose.model('Book', bookModel);
