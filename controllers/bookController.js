@@ -2,9 +2,18 @@ var bookController = function(Book) {
 
     var post = function(req, res) {
         var book = new Book(req.body);
-        // save to database
-        book.save();
-        res.status(201).send(book);
+
+        if (!req.body.title) {
+            // send 'Bad Request' Status Code
+            res.status(400);
+            res.send('Title is required');
+        } else {
+            // save to database
+            book.save();
+            // send 'Created' Status code (a new resource has been created)
+            res.status(201);
+            res.send(book);
+        }
     };
 
     var get = function(req, res) {     
