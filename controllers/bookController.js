@@ -32,7 +32,16 @@ var bookController = function(Book) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.json(books);
+                // add links to each book
+                var returnBooks = [];
+                books.forEach(function(element, index, array) {
+                    // element.toJSON removes all the mongoose information (the 'books' we loop over are mongoose objects)
+                    var newBook = element.toJSON();
+                    newBook.links = {};
+                    newBook.links.self = 'http://' + req.headers.host + '/api/books/' + newBook._id;
+                    returnBooks.push(newBook);
+                });
+                res.json(returnBooks);
             }
         });
     };
